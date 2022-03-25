@@ -15,7 +15,28 @@ services:
     restart: always
     ports: 
       - 6379:6379
+  discount.db: 
+    container_name: disount.db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=Discount.db
+    restart: always
+    ports: 
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
 
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@aspnetrun.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
+    restart: always
+    ports:
+      - 5050:80
+    volumes:
+      - pgadmin_data:/root/.pgadmin
   portainer: 
     container_name: portainer
     restart: always
