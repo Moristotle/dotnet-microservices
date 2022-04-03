@@ -16,7 +16,7 @@ services:
     ports: 
       - 6379:6379
   discount.db: 
-    container_name: disount.db
+    container_name: discount.db
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin1234
@@ -71,3 +71,12 @@ services:
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
 
+  discount.api:
+    container_name: discount.api
+    ports:
+      - 8002:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=localhost;Port=5432;Database=Discount.db;User Id=admin;Password=admin1234"
+    depends_on:
+      - discount.db
