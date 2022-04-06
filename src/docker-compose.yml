@@ -40,7 +40,7 @@ services:
     image: discount.grpc
     build:
       context: .
-      dockerfile: Services/Discount/Discount.GRPC/Dockerfile
+      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
 volumes:
   mongo_data: 
   portainer_data:

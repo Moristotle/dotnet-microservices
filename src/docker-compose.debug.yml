@@ -78,18 +78,17 @@ services:
       - 8002:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=Server=localhost;Port=5432;Database=Discount.db;User Id=admin;Password=admin1234"
+      - "DatabaseSettings:ConnectionString=Server=discount.db;Port=5432;Database=Discount.db;User Id=admin;Password=admin1234"
     depends_on:
       - discount.db
 
   discount.grpc:
     container_name: discount.grpc
-    restart: always
     ports:
       - 8003:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=Server=localhost;Port=5432;Database=Discount.db;User Id=admin;Password=admin1234"
+      - "DatabaseSettings:ConnectionString=Server=discount.db;Port=5432;Database=Discount.db;User Id=admin;Password=admin1234"
     depends_on:
       - discount.db
     volumes:
