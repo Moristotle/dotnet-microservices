@@ -66,6 +66,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=basket.db:6379"
+      - "GrpcSettings:DiscountUrl=discount.grpc"
     depends_on:
       - basket.db
     volumes:
@@ -80,3 +81,16 @@ services:
       - "DatabaseSettings:ConnectionString=Server=localhost;Port=5432;Database=Discount.db;User Id=admin;Password=admin1234"
     depends_on:
       - discount.db
+
+  discount.grpc:
+    container_name: discount.grpc
+    restart: always
+    ports:
+      - 8003:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=localhost;Port=5432;Database=Discount.db;User Id=admin;Password=admin1234"
+    depends_on:
+      - discount.db
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
